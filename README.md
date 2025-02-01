@@ -5,6 +5,8 @@ DuckDB is a high-performance analytical database system. It is designed to execu
 
 It a great tool for learning SQL and data analysis.
 
+During this guide, we are going to follow the instructions on the DuckDB in Action book. You can donwload your copy [here](https://motherduck.com/duckdb-book-brief/).
+
 ## Livebook
 
 Livebook is an interactive notebook that allows you to write and run code in real-time. All of hist capabilities provides us with an outstading learning experience to study SQL on a live environment.

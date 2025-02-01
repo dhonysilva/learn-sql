@@ -19,9 +19,7 @@ We are going to follow the instructions on the DuckDB in Action book.
 
 You can donwload your copy [here](https://motherduck.com/duckdb-book-brief/).
 
-```elixir
-
-```
+<!-- livebook:{"break_markdown":true} -->
 
 The first activity is to add Smart, the Database conection, DuckDB.
 
@@ -46,4 +44,53 @@ result =
   )
 ```
 
-<!-- livebook:{"offset":1624,"stamp":{"token":"XCP.iTcYuy2grqCQ0emxO5vywnHXW2zj8SlTuHpE2THw6KGzTLi6Ka5CjKdT0YPBEt7YAVI1bGmJXWCblvCGG6-eQN8ruPizXFAv_1qzlw","version":2}} -->
+To visualize all the DuckDB extentions:
+
+<!-- livebook:{"attrs":"eyJjYWNoZV9xdWVyeSI6dHJ1ZSwiY29ubmVjdGlvbiI6eyJ0eXBlIjoiZHVja2RiIiwidmFyaWFibGUiOiJjb25uIn0sImRhdGFfZnJhbWVfYWxpYXMiOiJFbGl4aXIuRXhwbG9yZXIuRGF0YUZyYW1lIiwicXVlcnkiOiJERVNDUklCRVxuU0VMRUNUICpcbkZST00gZHVja2RiX2V4dGVuc2lvbnMoKTsiLCJyZXN1bHRfdmFyaWFibGUiOiJyZXN1bHQyIiwidGltZW91dCI6bnVsbH0","chunks":null,"kind":"Elixir.KinoDB.SQLCell","livebook_object":"smart_cell"} -->
+
+```elixir
+result2 =
+  Explorer.DataFrame.from_query!(
+    conn,
+    ~S"""
+    DESCRIBE
+    SELECT *
+    FROM duckdb_extensions();
+    """,
+    []
+  )
+```
+
+<!-- livebook:{"attrs":"eyJjYWNoZV9xdWVyeSI6dHJ1ZSwiY29ubmVjdGlvbiI6eyJ0eXBlIjoiZHVja2RiIiwidmFyaWFibGUiOiJjb25uIn0sImRhdGFfZnJhbWVfYWxpYXMiOiJFbGl4aXIuRXhwbG9yZXIuRGF0YUZyYW1lIiwicXVlcnkiOiJTRUxFQ1QgZXh0ZW5zaW9uX25hbWUsIGxvYWRlZCwgaW5zdGFsbGVkXG5mcm9tIGR1Y2tkYl9leHRlbnNpb25zKClcbk9SREVSIEJZIGluc3RhbGxlZCBERVNDLCBsb2FkZWQgREVTQzsiLCJyZXN1bHRfdmFyaWFibGUiOiJyZXN1bHQzIiwidGltZW91dCI6bnVsbH0","chunks":null,"kind":"Elixir.KinoDB.SQLCell","livebook_object":"smart_cell"} -->
+
+```elixir
+result3 =
+  Explorer.DataFrame.from_query!(
+    conn,
+    ~S"""
+    SELECT extension_name, loaded, installed
+    from duckdb_extensions()
+    ORDER BY installed DESC, loaded DESC;
+    """,
+    []
+  )
+```
+
+Let's check which extensions we have installed on our machine:
+
+<!-- livebook:{"attrs":"eyJjYWNoZV9xdWVyeSI6dHJ1ZSwiY29ubmVjdGlvbiI6eyJ0eXBlIjoiZHVja2RiIiwidmFyaWFibGUiOiJjb25uIn0sImRhdGFfZnJhbWVfYWxpYXMiOiJFbGl4aXIuRXhwbG9yZXIuRGF0YUZyYW1lIiwicXVlcnkiOiJTRUxFQ1QgY291bnQoKilcbkZST00gJ2h0dHBzOi8vZ2l0aHViLmNvbS9ibm9rb3JvL0RhdGEtU2NpZW5jZS9yYXcvbWFzdGVyLydcbidjb3VudHJpZXMlMjBvZiUyMHRoZSUyMHdvcmxkLmNzdic7IiwicmVzdWx0X3ZhcmlhYmxlIjoicmVzdWx0NCIsInRpbWVvdXQiOm51bGx9","chunks":null,"kind":"Elixir.KinoDB.SQLCell","livebook_object":"smart_cell"} -->
+
+```elixir
+result4 =
+  Explorer.DataFrame.from_query!(
+    conn,
+    ~S"""
+    SELECT count(*)
+    FROM 'https://github.com/bnokoro/Data-Science/raw/master/'
+    'countries%20of%20the%20world.csv';
+    """,
+    []
+  )
+```
+
+<!-- livebook:{"offset":3702,"stamp":{"token":"XCP.cKdSlRwh0-lYaHhL-YK0KMYG066fk2AeNTDKMFuGlGs1D976Ie1w41qDfQiMYdFXS8ebj_98Xan7NrBzudQ7I2uBAoSkD6rqQOzUeQ","version":2}} -->
